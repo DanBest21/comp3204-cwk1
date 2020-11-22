@@ -4,10 +4,8 @@ import org.openimaj.image.DisplayUtilities;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.colour.ColourSpace;
-import org.openimaj.image.colour.RGBColour;
 import org.openimaj.image.connectedcomponent.GreyscaleConnectedComponentLabeler;
 import org.openimaj.image.pixel.ConnectedComponent;
-import org.openimaj.image.processing.convolution.FGaussianConvolve;
 import org.openimaj.image.processor.PixelProcessor;
 import org.openimaj.image.segmentation.FelzenszwalbHuttenlocherSegmenter;
 import org.openimaj.image.segmentation.SegmentationUtilities;
@@ -98,7 +96,7 @@ public class App
             }
         });
 
-        /**
+        /*
          * The advantage of using a PixelProcessor over the simplistic method of two for loops is it is significantly more efficient than looping over each pixel in the image,
          * as it instead just loops through each pixel in the image instead in the form of a Float[] variable.
          * However, the key disadvantage is that it requires these pixels to be in the object type of Float[], whereas the HardAssigner requires the primitive type of float[],

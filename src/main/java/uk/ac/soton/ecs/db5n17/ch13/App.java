@@ -11,14 +11,8 @@ import org.openimaj.feature.DoubleFVComparison;
 import org.openimaj.image.DisplayUtilities;
 import org.openimaj.image.FImage;
 import org.openimaj.image.ImageUtilities;
-import org.openimaj.image.MBFImage;
-import org.openimaj.image.colour.ColourSpace;
-import org.openimaj.image.colour.RGBColour;
 import org.openimaj.image.model.EigenImages;
-import org.openimaj.image.processing.convolution.FGaussianConvolve;
-import org.openimaj.image.typography.hershey.HersheyFont;
 
-import java.nio.file.FileSystem;
 import java.util.*;
 
 /**
@@ -31,7 +25,7 @@ public class App
     {
         // Load the dataset.
         VFSGroupDataset<FImage> dataset =
-                new VFSGroupDataset<FImage>("zip:http://datasets.openimaj.org/att_faces.zip", ImageUtilities.FIMAGE_READER);
+                new VFSGroupDataset<>("zip:http://datasets.openimaj.org/att_faces.zip", ImageUtilities.FIMAGE_READER);
 
         // Split the dataset into training and testing data.
         // Exercise 2: Explore the effect of training set size
@@ -42,7 +36,7 @@ public class App
         int nTraining = 5;
         int nTesting = 5;
         GroupedRandomSplitter<String, FImage> splits =
-                new GroupedRandomSplitter<String, FImage>(dataset, nTraining, 0, nTesting);
+                new GroupedRandomSplitter<>(dataset, nTraining, 0, nTesting);
         GroupedDataset<String, ListDataset<FImage>, FImage> training = splits.getTrainingDataset();
         GroupedDataset<String, ListDataset<FImage>, FImage> testing = splits.getTestDataset();
 
@@ -53,14 +47,14 @@ public class App
         eigen.train(basisImages);
 
         // Draw the first twelve basis vectors (Eigenfaces).
-        List<FImage> eigenFaces = new ArrayList<FImage>();
+        List<FImage> eigenFaces = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             eigenFaces.add(eigen.visualisePC(i));
         }
         DisplayUtilities.display("EigenFaces", eigenFaces);
 
         // Build a database of features from the training images.
-        Map<String, DoubleFV[]> features = new HashMap<String, DoubleFV[]>();
+        Map<String, DoubleFV[]> features = new HashMap<>();
         for (final String person : training.getGroups())
         {
             final DoubleFV[] fvs = new DoubleFV[nTraining];
@@ -126,7 +120,7 @@ public class App
                 // Determine if the model was correct or not, and update the correct and incorrect variables appropriately.
                 System.out.println("Actual: " + truePerson + "\tguess: " + bestPerson);
 
-                if (!bestPerson.equals("unknown"))
+                if (bestPerson != null && !bestPerson.equals("unknown"))
                 {
                     if (truePerson.equals(bestPerson))
                         correct++;
