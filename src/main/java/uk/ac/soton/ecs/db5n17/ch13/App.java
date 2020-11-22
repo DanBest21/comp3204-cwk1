@@ -81,7 +81,7 @@ public class App
         int randomFeature = (int)(Math.random() * randomFeatures.length);
         // Finally, reconstruct the face and then display the normalised result.
         FImage reconstructedFace = eigen.reconstruct(randomFeatures[randomFeature]);
-        DisplayUtilities.display(reconstructedFace.normalise());
+        DisplayUtilities.display(reconstructedFace.normalise(), "Reconstructed Face");
 
         // Loop through each identifier (person) in the testing dataset.
         double correct = 0, incorrect = 0;

@@ -107,7 +107,7 @@ public class App
 
         // Display the resultant image.
         input = ColourSpace.convert(input, ColourSpace.RGB);
-        DisplayUtilities.display(input);
+        DisplayUtilities.display(input, "K-Means Clustering");
 
         // Find connected components using the GreyscaleConnectedComponentLabeller.
         GreyscaleConnectedComponentLabeler labeler = new GreyscaleConnectedComponentLabeler();
@@ -123,7 +123,7 @@ public class App
         }
 
         // Display the segmented image.
-        DisplayUtilities.display(input);
+        DisplayUtilities.display(input, "Primitive Segmentation");
 
         // Exercise 2: A real segmentation algorithm
         // Create the FelzenszwalbHuttenlocherSegmenter, use it to create a list of ConnectComponent objects, and then render the result.
@@ -132,6 +132,6 @@ public class App
         MBFImage segmentedImage = SegmentationUtilities.renderSegments(fhInput, fhComponents);
 
         // This technique is quite clearly far more complex and accurate than our naïve approach.
-        DisplayUtilities.display(segmentedImage);
+        DisplayUtilities.display(segmentedImage, "Felzenszwalb Huttenlocher Segmentation");
     }
 }
