@@ -21,6 +21,7 @@ public class App
     public static void main( String[] args ) throws IOException
     {
         MBFImage image = ImageUtilities.readMBF(new URL("http://static.openimaj.org/media/tutorial/sinaface.jpg"));
+        // Exercise 1: DisplayUtilities
         DisplayUtilities.createNamedWindow("window", "Chapter 2: Processing your first image");
 
         displayImageAndWait(image);
@@ -47,6 +48,7 @@ public class App
 
         displayImageAndWait(image);
 
+        // Exercise 2: Drawing
         // First draw the speech bubbles as filled white ellipses.
         image.drawShapeFilled(new Ellipse(700f, 450f, 20f, 10f, 0f), RGBColour.WHITE);
         image.drawShapeFilled(new Ellipse(650f, 425f, 25f, 12f, 0f), RGBColour.WHITE);

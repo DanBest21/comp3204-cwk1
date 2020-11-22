@@ -48,6 +48,7 @@ public class App
 
         display = VideoDisplay.createVideoDisplay(video);
 
+        // Exercise 1: Applying different types of image processing to the video
         // Apply Adaptive Local Thresholding using the mean via a video listener that is attached to it
         display.addVideoListener(
                 new VideoDisplayListener<MBFImage>()
